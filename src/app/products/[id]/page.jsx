@@ -2,8 +2,12 @@ import Link from 'next/link';
 import React from 'react';
 
 export default async function ProductDetails({ params }) {
+  const session = await getServerSession(authOptions);
   const { id } = await params;
-
+  
+  if (!session) {
+    redirect('/auth/signin'); // Login page
+  }
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${id}`,
     {
