@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
 export default async function FeaturedProducts() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/featured-products`
-  );
+ const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/featured-products`, {
+  cache: "no-store"
+});
   const featuredProduct = await res.json();
   console.log(featuredProduct);
 
