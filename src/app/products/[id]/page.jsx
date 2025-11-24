@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '../api/auth/[...nextauth]/route';
 import { redirect } from "next/navigation";
 
 export default async function ProductDetails({ params }) {
@@ -9,7 +9,7 @@ export default async function ProductDetails({ params }) {
   const { id } = await params;
   
   if (!session) {
-    redirect('/auth/signin'); // Login page
+    redirect('/login'); // Login page
   }
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${id}`,
