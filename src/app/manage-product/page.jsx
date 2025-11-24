@@ -2,12 +2,13 @@ import ManageProductClient from './ManageProductClient';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../api/auth/[...nextauth]/route';
 import clientPromise from '@/lib/mongodb';
+import { redirect } from 'next/navigation';
 
 export default async function ManageProduct() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    return <div className="text-center py-10">You are not authorized.</div>;
+    redirect('/login');
   }
 
   const client = await clientPromise;

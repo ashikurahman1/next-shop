@@ -2,12 +2,13 @@ import Link from 'next/link';
 import React from 'react';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../../api/auth/[...nextauth]/route';
-import { redirect } from "next/navigation";
+import { redirect } from 'next/navigation';
+import { FaUser } from 'react-icons/fa';
 
 export default async function ProductDetails({ params }) {
   const session = await getServerSession(authOptions);
   const { id } = await params;
-  
+
   if (!session) {
     redirect('/login'); // Login page
   }
@@ -56,7 +57,7 @@ export default async function ProductDetails({ params }) {
             <p className="font-semibold text-xl mb-3">Seller Info:</p>
             <hr />
             <img
-              src={product?.userPhoto}
+              src={product?.userPhoto ? product?.userPhoto : <FaUser />}
               alt={product.addedBy}
               className="w-12 h-12 object-cover border rounded-md mt-5"
             />

@@ -35,6 +35,9 @@ export default function Footer() {
           <a className="link link-hover">Cookie policy</a>
         </nav>
       </footer>
+      <div className="text-center mt-5 text-sm">
+        <p>&copy; All right reserved | {new Date().getFullYear()}</p>
+      </div>
     </div>
   );
 }

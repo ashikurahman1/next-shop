@@ -4,18 +4,17 @@ export const metadata = {
   title: 'AllProducts | Next Shop',
 };
 export default async function AllProducts() {
- 
-const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
-  cache: 'no-store',
-});
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
+    cache: 'no-store',
+  });
 
-if (!res.ok) {
-  console.error('Failed to fetch products:', await res.text());
-  return <p>Failed to load products.</p>;
-}
+  if (!res.ok) {
+    console.error('Failed to fetch products:', await res.text());
+    return <p>Failed to load products.</p>;
+  }
 
-const products = await res.json();
-  
+  const products = await res.json();
+
   return (
     <section className="py-20 w-full lg:w-10/12 mx-auto px-4 ">
       {products.length > 0 ? (
@@ -23,6 +22,45 @@ const products = await res.json();
           <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-secondary">
             All Products ({products.length})
           </h2>
+          <div className="px-10 my-7 flex justify-between gap-10 ">
+            <div className="w-full lg:w-1/2">
+              <select defaultValue="filter" className="select appearance-none ">
+                <option selected disabled={true}>
+                  Filter
+                </option>
+                <option>Sort by low Price</option>
+                <option>sort by High Price</option>
+                <option>Sort by Color</option>
+                <option>Sort by Recent</option>
+              </select>
+            </div>
+            <div className="flex-1">
+              <label className="input  w-full">
+                <svg
+                  className="h-[1em] opacity-50"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth="2.5"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                  </g>
+                </svg>
+                <input
+                  type="search"
+                  required
+                  placeholder="Search"
+                  className="w-full "
+                />
+              </label>
+            </div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-5 ">
             {products.map(product => (
               <div
@@ -36,8 +74,10 @@ const products = await res.json();
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h3 className="text-lg font-semibold">{product.productName}</h3>
-                <p className="text-sm mt-1 mb-3 line-clamp-3">
+                <h3 className="text-lg font-semibold line-clamp-1">
+                  {product.productName}
+                </h3>
+                <p className="text-sm mt-1 mb-3 line-clamp-2">
                   {product.shortDescription}{' '}
                 </p>
                 <p className="text-xl font-semibold text-secondary mb-4">

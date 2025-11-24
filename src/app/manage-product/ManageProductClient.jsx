@@ -1,5 +1,7 @@
 'use client';
+
 import Link from 'next/link';
+
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 
@@ -29,7 +31,6 @@ export default function ManageProductClient({ products }) {
             icon: 'success',
           });
 
-          // update state after deletion
           setItems(prev => prev.filter(p => p._id !== id));
         } else {
           Swal.fire('Error', data.error || 'Failed to delete', 'error');
@@ -68,19 +69,21 @@ export default function ManageProductClient({ products }) {
                   <td>
                     <img src={product.productImage} className="w-15" />
                   </td>
-                  <td className="flex">
-                    <Link
-                      href={`/products/${product?._id}`}
-                      className="btn btn-secondary btn-sm mr-3"
-                    >
-                      View
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(product._id)}
-                      className="btn btn-primary btn-sm"
-                    >
-                      Delete
-                    </button>
+                  <td className="">
+                    <div className="flex">
+                      <Link
+                        href={`/products/${product?._id}`}
+                        className="btn btn-secondary btn-sm mr-3"
+                      >
+                        View
+                      </Link>
+                      <button
+                        onClick={() => handleDelete(product._id)}
+                        className="btn btn-primary btn-sm"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

@@ -1,19 +1,20 @@
 import Link from 'next/link';
 
 export default async function FeaturedProducts() {
- const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/featured-products`, {
-  cache: "no-store"
-});
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/featured-products`,
+    {
+      cache: 'no-store',
+    }
+  );
 
-if (!res.ok) {
-  console.error("API ERROR:", await res.text());
-  return <div>Featured products not available</div>; // fallback UI
-}
+  if (!res.ok) {
+    console.error('API ERROR:', await res.text());
+    return <div>Featured products not available</div>; // fallback UI
+  }
 
-const featuredProduct = await res.json();
+  const featuredProduct = await res.json();
 
-
- 
   return (
     <section className="py-20">
       <h2 className="text-4xl font-bold text-secondary text-center mb-12">
@@ -33,8 +34,10 @@ const featuredProduct = await res.json();
                 className="w-full h-full object-cover"
               />
             </div>
-            <h3 className="text-lg font-semibold">{product.productName}</h3>
-            <p className="text-sm mt-1 mb-3 line-clamp-3">
+            <h3 className="text-lg font-semibold line-clamp-1">
+              {product.productName}
+            </h3>
+            <p className="text-sm mt-1 mb-3 line-clamp-2">
               {product.shortDescription}{' '}
             </p>
             <p className="text-xl font-semibold text-secondary mb-4">

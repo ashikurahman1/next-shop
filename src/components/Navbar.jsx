@@ -26,7 +26,7 @@ export default function Navbar() {
   );
   if (status === 'loading') return <Loading />;
   return (
-    <nav className="bg-base-100 shadow-sm">
+    <nav className="bg-base-100 shadow-sm sticky top-0 z-100">
       <div className=" navbar w-full  lg:max-w-10/12 mx-auto px-4">
         <div className="navbar-start">
           <div className="dropdown">

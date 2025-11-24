@@ -1,7 +1,7 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
@@ -11,6 +11,10 @@ export default function AddProduct() {
   const { register, handleSubmit } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
+
+  if (!session) {
+    redirect('/login');
+  }
 
   const handleAddProduct = async data => {
     try {
