@@ -101,7 +101,7 @@ export default function Navbar() {
                   </li>
                 </div>
                 <button
-                  onClick={() => signOut({ callbackUrl: '/login' })}
+                  onClick={() => signOut({ callbackUrl: '/' })}
                   className="btn btn-primary w-full "
                 >
                   Logout
