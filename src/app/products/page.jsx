@@ -4,9 +4,18 @@ export const metadata = {
   title: 'AllProducts | Next Shop',
 };
 export default async function AllProducts() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`);
-  const products = await res.json();
+ 
+const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
+  cache: 'no-store',
+});
 
+if (!res.ok) {
+  console.error('Failed to fetch products:', await res.text());
+  return <p>Failed to load products.</p>;
+}
+
+const products = await res.json();
+  
   return (
     <section className="py-20 w-full lg:w-10/12 mx-auto px-4 ">
       {products.length > 0 ? (
