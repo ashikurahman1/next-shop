@@ -4,9 +4,16 @@ export default async function FeaturedProducts() {
  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/featured-products`, {
   cache: "no-store"
 });
-  const featuredProduct = await res.json();
-  console.log(featuredProduct);
 
+if (!res.ok) {
+  console.error("API ERROR:", await res.text());
+  return <div>Featured products not available</div>; // fallback UI
+}
+
+const featuredProduct = await res.json();
+
+
+ 
   return (
     <section className="py-20">
       <h2 className="text-4xl font-bold text-secondary text-center mb-12">
