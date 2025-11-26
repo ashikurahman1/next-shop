@@ -22,7 +22,7 @@ export default async function AllProducts() {
           <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-secondary">
             All Products ({products.length})
           </h2>
-          <div className="px-10 my-7 flex justify-between gap-10 ">
+          <div className="mx-5 my-7 flex justify-between gap-5 lg:gap-10 ">
             <div className="w-full lg:w-1/2">
               <select defaultValue="filter" className="select appearance-none ">
                 <option selected disabled={true}>
@@ -34,7 +34,7 @@ export default async function AllProducts() {
                 <option>Sort by Recent</option>
               </select>
             </div>
-            <div className="flex-1">
+            <div className="w-full lg:w-1/2">
               <label className="input  w-full">
                 <svg
                   className="h-[1em] opacity-50"
